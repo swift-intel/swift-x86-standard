@@ -1,0 +1,4 @@
+module CX86Shim {
+    header "shim.h"
+    export *
+}
