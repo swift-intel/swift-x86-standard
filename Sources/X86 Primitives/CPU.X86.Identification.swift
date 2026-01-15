@@ -34,7 +34,7 @@ extension CPU.X86.Identification {
         var ecx: UInt32 = 0
         var edx: UInt32 = 0
 
-        let success = swift_x86_identification_query_v1(
+        let success = unsafe swift_x86_identification_query_v1(
             leaf.rawValue,
             &eax,
             &ebx,
@@ -68,7 +68,7 @@ extension CPU.X86.Identification {
         var ecx: UInt32 = 0
         var edx: UInt32 = 0
 
-        let success = swift_x86_identification_query_subleaf_v1(
+        let success = unsafe swift_x86_identification_query_subleaf_v1(
             leaf.rawValue,
             subleaf.rawValue,
             &eax,

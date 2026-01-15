@@ -36,7 +36,7 @@ extension CPU.X86.Timestamp.Read {
     @inline(__always)
     public func serialized() -> (value: CPU.Timestamp, processor: CPU.X86.Processor.ID) {
         var processorID: UInt32 = 0
-        let timestamp = swift_x86_timestamp_serialized_v1(&processorID)
+        let timestamp = unsafe swift_x86_timestamp_serialized_v1(&processorID)
         return (.init(timestamp), .init(processorID))
     }
 }
