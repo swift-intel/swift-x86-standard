@@ -31,7 +31,13 @@ let package = Package(
                 .target(name: "CX86Shim"),
                 .product(name: "CPU Primitives", package: "swift-cpu-primitives")
             ]
-        )
+        ),
+        .testTarget(
+            name: "X86 Primitives Tests",
+            dependencies: [
+                "X86 Primitives",
+            ]
+        ),
     ],
     swiftLanguageModes: [.v6]
 )
@@ -42,6 +48,7 @@ for target in package.targets where ![.system, .binary, .plugin, .macro].contain
         .enableUpcomingFeature("ExistentialAny"),
         .enableUpcomingFeature("InternalImportsByDefault"),
         .enableUpcomingFeature("MemberImportVisibility"),
+        .enableUpcomingFeature("NonisolatedNonsendingByDefault"),
         .enableExperimentalFeature("Lifetimes"),
         .enableExperimentalFeature("SuppressedAssociatedTypes"),
         .enableExperimentalFeature("SuppressedAssociatedTypesWithDefaults"),
