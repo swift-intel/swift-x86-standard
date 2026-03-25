@@ -27,7 +27,7 @@ extension CPU.X86.Identification {
     /// - Parameter leaf: The CPUID leaf to query.
     /// - Returns: The register values, or `nil` if the operation failed
     ///   (e.g., on non-x86 platforms).
-    @inline(__always)
+    @inline(always)
     public static func query(leaf: Leaf) -> Result? {
         var eax: UInt32 = 0
         var ebx: UInt32 = 0
@@ -61,7 +61,7 @@ extension CPU.X86.Identification {
     ///   - subleaf: The subleaf (ECX input) to query.
     /// - Returns: The register values, or `nil` if the operation failed
     ///   (e.g., on non-x86 platforms).
-    @inline(__always)
+    @inline(always)
     public static func query(leaf: Leaf, subleaf: Subleaf) -> Result? {
         var eax: UInt32 = 0
         var ebx: UInt32 = 0

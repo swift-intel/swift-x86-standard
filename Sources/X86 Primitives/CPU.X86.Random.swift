@@ -27,7 +27,7 @@ extension CPU.X86.Random {
     ///
     /// - Returns: A random value, or `nil` if the hardware RNG
     ///   is unavailable or temporarily exhausted.
-    @inline(__always)
+    @inline(always)
     public static func next() -> Value? {
         var value: UInt64 = 0
         let success = unsafe swift_x86_random_next_v1(&value)
@@ -47,7 +47,7 @@ extension CPU.X86.Random {
     ///
     /// - Returns: A random seed value, or `nil` if the entropy
     ///   source is unavailable or temporarily exhausted.
-    @inline(__always)
+    @inline(always)
     public static func seed() -> Seed? {
         var value: UInt64 = 0
         let success = unsafe swift_x86_random_seed_v1(&value)
