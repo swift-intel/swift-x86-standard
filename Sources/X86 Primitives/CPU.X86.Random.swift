@@ -9,7 +9,7 @@
 //
 // ===----------------------------------------------------------------------===//
 
-internal import CX86Shim
+public import CX86Shim
 
 extension CPU.X86 {
     /// Hardware random number generation.
