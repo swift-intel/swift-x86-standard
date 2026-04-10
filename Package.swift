@@ -13,8 +13,8 @@ let package = Package(
     ],
     products: [
         .library(
-            name: "X86 Primitives",
-            targets: ["X86 Primitives"]
+            name: "X86 Standard",
+            targets: ["X86 Standard"]
         )
     ],
     dependencies: [
@@ -26,16 +26,16 @@ let package = Package(
             dependencies: []
         ),
         .target(
-            name: "X86 Primitives",
+            name: "X86 Standard",
             dependencies: [
                 .target(name: "CX86Shim"),
                 .product(name: "CPU Primitives", package: "swift-cpu-primitives")
             ]
         ),
         .testTarget(
-            name: "X86 Primitives Tests",
+            name: "X86 Standard Tests",
             dependencies: [
-                "X86 Primitives",
+                "X86 Standard",
             ]
         ),
     ],
