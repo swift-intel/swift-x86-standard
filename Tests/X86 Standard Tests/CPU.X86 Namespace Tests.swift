@@ -10,7 +10,7 @@
 // ===----------------------------------------------------------------------===//
 
 import Testing
-@testable import X86_Primitives
+@testable import X86_Standard
 
 @Suite("CPU.X86 Namespace Tests")
 struct CPUX86NamespaceTests {
