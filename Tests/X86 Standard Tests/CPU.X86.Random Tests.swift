@@ -14,8 +14,8 @@ import Testing
 
 @Suite("CPU.X86.Random Tests")
 struct CPURandomTests {
-    @Test("next returns random value on supported hardware")
-    func nextReturnsValue() {
+    @Test
+    func `next returns random value on supported hardware`() {
         #if arch(x86_64) || arch(i386)
         // Check if RDRAND is supported via CPUID
         guard let leaf1 = CPU.X86.Identification.query(leaf: 1) else {
@@ -46,8 +46,8 @@ struct CPURandomTests {
         #endif
     }
 
-    @Test("seed returns random value on supported hardware")
-    func seedReturnsValue() {
+    @Test
+    func `seed returns random value on supported hardware`() {
         #if arch(x86_64) || arch(i386)
         // Check if RDSEED is supported via CPUID extended features
         guard let leaf7 = CPU.X86.Identification.query(leaf: 7, subleaf: 0) else {

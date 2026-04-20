@@ -14,45 +14,45 @@ import Testing
 
 @Suite("CPU.X86 Namespace Tests")
 struct CPUX86NamespaceTests {
-    @Test("CPU.X86 namespace exists")
-    func namespaceExists() {
+    @Test
+    func `CPU.X86 namespace exists`() {
         // Verify the namespace compiles
         typealias X86 = CPU.X86
         #expect(true)
     }
 
-    @Test("CPU.X86.Identification namespace exists")
-    func identificationNamespaceExists() {
+    @Test
+    func `CPU.X86.Identification namespace exists`() {
         typealias Identification = CPU.X86.Identification
         #expect(true)
     }
 
-    @Test("CPU.X86.Random namespace exists")
-    func randomNamespaceExists() {
+    @Test
+    func `CPU.X86.Random namespace exists`() {
         typealias Random = CPU.X86.Random
         #expect(true)
     }
 
-    @Test("CPU.X86.Timestamp namespace exists")
-    func timestampNamespaceExists() {
+    @Test
+    func `CPU.X86.Timestamp namespace exists`() {
         typealias Timestamp = CPU.X86.Timestamp
         #expect(true)
     }
 
-    @Test("CPU.X86.Vector reserved namespace exists")
-    func vectorNamespaceExists() {
+    @Test
+    func `CPU.X86.Vector reserved namespace exists`() {
         typealias Vector = CPU.X86.Vector
         #expect(true)
     }
 
-    @Test("CPU.X86.Crypto reserved namespace exists")
-    func cryptoNamespaceExists() {
+    @Test
+    func `CPU.X86.Crypto reserved namespace exists`() {
         typealias Crypto = CPU.X86.Crypto
         #expect(true)
     }
 
-    @Test("Re-exported CPU primitives are accessible")
-    func reExportedPrimitivesAccessible() {
+    @Test
+    func `Re-exported CPU primitives are accessible`() {
         // Verify CPU primitives from swift-cpu-primitives are accessible
         // These should be re-exported via @_exported import
         typealias Spin = CPU.Spin

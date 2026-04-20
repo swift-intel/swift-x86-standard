@@ -14,8 +14,8 @@ import Testing
 
 @Suite("CPU.X86.Identification Tests")
 struct CPUIdentificationTests {
-    @Test("query leaf 0 returns vendor string")
-    func queryLeafZero() {
+    @Test
+    func `query leaf 0 returns vendor string`() {
         #if arch(x86_64) || arch(i386)
         guard let result = CPU.X86.Identification.query(leaf: 0) else {
             Issue.record("CPUID leaf 0 failed on x86")
@@ -43,8 +43,8 @@ struct CPUIdentificationTests {
         #endif
     }
 
-    @Test("query leaf 1 returns feature flags")
-    func queryLeafOne() {
+    @Test
+    func `query leaf 1 returns feature flags`() {
         #if arch(x86_64) || arch(i386)
         guard let result = CPU.X86.Identification.query(leaf: 1) else {
             Issue.record("CPUID leaf 1 failed on x86")
@@ -60,8 +60,8 @@ struct CPUIdentificationTests {
         #endif
     }
 
-    @Test("query with subleaf works")
-    func queryWithSubleaf() {
+    @Test
+    func `query with subleaf works`() {
         #if arch(x86_64) || arch(i386)
         // Extended topology enumeration (leaf 0x0B)
         guard let leaf0 = CPU.X86.Identification.query(leaf: 0) else {

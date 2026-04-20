@@ -14,8 +14,8 @@ import Testing
 
 @Suite("CPU.X86.Timestamp Tests")
 struct CPUTimestampTests {
-    @Test("serialized read returns non-zero on x86")
-    func serializedReadReturnsValue() {
+    @Test
+    func `serialized read returns non-zero on x86`() {
         let (value, _) = CPU.X86.Timestamp.read.serialized()
 
         #if arch(x86_64) || arch(i386)
@@ -25,8 +25,8 @@ struct CPUTimestampTests {
         #endif
     }
 
-    @Test("serialized read values increase")
-    func serializedReadIncreases() {
+    @Test
+    func `serialized read values increase`() {
         #if arch(x86_64) || arch(i386)
         let (v1, _) = CPU.X86.Timestamp.read.serialized()
         let (v2, _) = CPU.X86.Timestamp.read.serialized()
@@ -39,8 +39,8 @@ struct CPUTimestampTests {
         #endif
     }
 
-    @Test("serialized read returns processor ID")
-    func serializedReadWithProcessorID() {
+    @Test
+    func `serialized read returns processor ID`() {
         let (value, processorID) = CPU.X86.Timestamp.read.serialized()
 
         #if arch(x86_64) || arch(i386)
@@ -54,8 +54,8 @@ struct CPUTimestampTests {
         #endif
     }
 
-    @Test("accessor pattern works")
-    func accessorPatternWorks() {
+    @Test
+    func `accessor pattern works`() {
         // Verify the nested accessor pattern compiles and works
         let read = CPU.X86.Timestamp.read
         let _ = read.serialized()
