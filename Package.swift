@@ -18,7 +18,7 @@ let package = Package(
         )
     ],
     dependencies: [
-        .package(path: "../../swift-primitives/swift-cpu-primitives")
+        .package(url: "https://github.com/swift-primitives/swift-cpu-primitives.git", branch: "main")
     ],
     targets: [
         .target(
