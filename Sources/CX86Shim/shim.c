@@ -28,6 +28,24 @@
     #endif
 #endif
 
+// Per-function target-feature enablement for the MSVC/clang intrinsic path.
+// `_rdrand{32,64}_step` / `_rdseed{32,64}_step` are always_inline intrinsics
+// that require the `rdrnd` / `rdseed` target features; without them the compiler
+// hard-errors when inlining into a caller compiled for a baseline CPU. This bites
+// the Windows toolchain, which is clang targeting *-windows-msvc (so _MSC_VER is
+// defined and the SWIFT_MSVC intrinsic path is taken) built for a generic
+// baseline. The GNU inline-asm path (Linux/macOS x86) does not need the feature
+// — inline asm is opaque to the feature check — so the attribute is harmless
+// there. On non-x86 targets the macro expands to nothing (rdrnd/rdseed are x86
+// features and the intrinsic bodies are already #if SWIFT_X86-guarded out).
+// Runtime availability is the caller's concern (RDRAND/RDSEED ship on every
+// x86-64 CPU since Ivy Bridge, 2012).
+#if (defined(__GNUC__) || defined(__clang__)) && defined(SWIFT_X86)
+    #define SWIFT_X86_TARGET(feat) __attribute__((target(feat)))
+#else
+    #define SWIFT_X86_TARGET(feat)
+#endif
+
 // ============================================================================
 // CPUID - CPU Identification
 // ============================================================================
@@ -96,6 +114,7 @@ bool swift_x86_identification_query_subleaf_v1(
 // RDRAND - Hardware Random Number Generator
 // ============================================================================
 
+SWIFT_X86_TARGET("rdrnd")
 bool swift_x86_random_next_v1(unsigned long long* value) {
 #if SWIFT_X86
     #if defined(__x86_64__) || defined(_M_X64)
@@ -147,6 +166,7 @@ bool swift_x86_random_next_v1(unsigned long long* value) {
 // RDSEED - Hardware Random Seed Generator
 // ============================================================================
 
+SWIFT_X86_TARGET("rdseed")
 bool swift_x86_random_seed_v1(unsigned long long* value) {
 #if SWIFT_X86
     #if defined(__x86_64__) || defined(_M_X64)
