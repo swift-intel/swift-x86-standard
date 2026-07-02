@@ -1,6 +1,6 @@
 # .github/metadata.yaml
 # Triaged by AI-assisted bulk pass (2026-04-29).
-description: "Swift implementation of the x86 architecture reference."
+description: "x86/x64 ISA-unique CPU primitives for Swift: CPUID feature identification, RDRAND/RDSEED hardware random generation, RDTSC timestamp counters, and reserved vector and crypto namespaces."
 topics:
   - standards
   - x86
