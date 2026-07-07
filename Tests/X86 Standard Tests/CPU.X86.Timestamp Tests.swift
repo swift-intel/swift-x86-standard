@@ -20,7 +20,7 @@ struct CPUTimestampTests {
         let (value, _) = CPU.X86.Timestamp.read.serialized()
 
         #if arch(x86_64) || arch(i386)
-            #expect(value > 0, "RDTSCP should return non-zero on x86")
+            #expect(value.rawValue > 0, "RDTSCP should return non-zero on x86")
         #else
             #expect(value == 0, "RDTSCP should return 0 on non-x86")
         #endif
@@ -34,7 +34,7 @@ struct CPUTimestampTests {
 
             // On same core, values should increase
             // (though wraparound is theoretically possible)
-            #expect(v2 >= v1, "Timestamp should not decrease between reads")
+            #expect(v2.rawValue >= v1.rawValue, "Timestamp should not decrease between reads")
         #else
             // Skip on non-x86
         #endif
@@ -45,7 +45,7 @@ struct CPUTimestampTests {
         let (value, processorID) = CPU.X86.Timestamp.read.serialized()
 
         #if arch(x86_64) || arch(i386)
-            #expect(value > 0, "RDTSCP should return non-zero")
+            #expect(value.rawValue > 0, "RDTSCP should return non-zero")
             // processorID is valid but we can't assert much about it
             // It's typically set by the OS in IA32_TSC_AUX
             _ = processorID

@@ -36,7 +36,10 @@ struct CPUIdentificationTests {
                 + withUnsafeBytes(of: edx) { Array($0) }
                 + withUnsafeBytes(of: ecx) { Array($0) }
 
-            let vendor = String(bytes: vendorBytes, encoding: .ascii) ?? ""
+            // ASCII is a subset of UTF-8, so decode as UTF-8 via the stdlib
+            // (Foundation's String(bytes:encoding:) is not available on the
+            // Windows toolchain and this file imports no Foundation).
+            let vendor = String(decoding: vendorBytes, as: UTF8.self)
             #expect(!vendor.isEmpty, "Vendor string should not be empty")
         #else
             // Non-x86: should return nil
@@ -54,7 +57,7 @@ struct CPUIdentificationTests {
             }
 
             // EDX bit 0 = FPU, should be set on any modern x86
-            let hasFPU = (result.edx & 1).isNonZero
+            let hasFPU = (result.edx.rawValue & 1) != 0
             #expect(hasFPU, "FPU bit should be set")
         #else
             let result = CPU.X86.Identification.query(leaf: 1)

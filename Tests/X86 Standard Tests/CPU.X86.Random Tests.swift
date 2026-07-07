@@ -23,7 +23,7 @@ struct CPURandomTests {
                 return  // Can't check feature flags
             }
 
-            let rdrandSupported = (leaf1.ecx & (1 << 30)).isNonZero
+            let rdrandSupported = (leaf1.ecx.rawValue & (1 << 30)) != 0
 
             if rdrandSupported {
                 // Try a few times since RDRAND can temporarily fail
@@ -55,7 +55,7 @@ struct CPURandomTests {
                 return  // Can't check feature flags
             }
 
-            let rdseedSupported = (leaf7.ebx & (1 << 18)).isNonZero
+            let rdseedSupported = (leaf7.ebx.rawValue & (1 << 18)) != 0
 
             if rdseedSupported {
                 // RDSEED may fail more often, try more times
