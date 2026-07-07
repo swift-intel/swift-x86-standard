@@ -10,6 +10,7 @@
 // ===----------------------------------------------------------------------===//
 
 import Testing
+
 @testable import X86_Standard
 
 @Suite("CPU.X86 Namespace Tests")
