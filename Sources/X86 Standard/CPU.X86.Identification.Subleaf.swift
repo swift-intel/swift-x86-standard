@@ -28,11 +28,15 @@ extension CPU.X86.Identification {
         public init(integerLiteral value: UInt32) {
             self.rawValue = value
         }
+    }
+}
 
-        @inlinable
-        public static func < (lhs: Self, rhs: Self) -> Bool {
-            lhs.rawValue < rhs.rawValue
-        }
+// MARK: - Comparable
+
+extension CPU.X86.Identification.Subleaf {
+    @inlinable
+    public static func < (lhs: Self, rhs: Self) -> Bool {
+        lhs.rawValue < rhs.rawValue
     }
 }
 
