@@ -9,7 +9,7 @@
 //
 // ===----------------------------------------------------------------------===//
 
-public import CX86Shim
+public import x86_Shims
 
 extension CPU.X86 {
     /// CPU feature detection via CPUID instruction.

@@ -22,13 +22,13 @@ let package = Package(
     ],
     targets: [
         .target(
-            name: "CX86Shim",
+            name: "x86 Shims",
             dependencies: []
         ),
         .target(
             name: "X86 Standard",
             dependencies: [
-                .target(name: "CX86Shim"),
+                .target(name: "x86 Shims"),
                 .product(name: "CPU Primitives", package: "swift-cpu-primitives")
             ]
         ),
