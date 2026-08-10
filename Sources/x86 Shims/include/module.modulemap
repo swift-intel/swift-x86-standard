@@ -1,4 +1,4 @@
-module CX86Shim {
+module x86_Shims {
     header "shim.h"
     export *
 }
