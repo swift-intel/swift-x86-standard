@@ -11,7 +11,9 @@
 
 extension CPU.X86.Identification {
     /// A CPUID subleaf number.
-    public struct Subleaf: Sendable, Hashable, RawRepresentable, Comparable, ExpressibleByIntegerLiteral {
+    public struct Subleaf: Sendable, Hashable, RawRepresentable, Comparable,
+        ExpressibleByIntegerLiteral
+    {
         public var rawValue: UInt32
 
         @inlinable

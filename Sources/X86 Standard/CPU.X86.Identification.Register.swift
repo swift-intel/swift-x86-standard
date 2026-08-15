@@ -11,7 +11,9 @@
 
 extension CPU.X86.Identification {
     /// A CPUID register value (EAX, EBX, ECX, or EDX).
-    public struct Register: Sendable, Hashable, RawRepresentable, Comparable, ExpressibleByIntegerLiteral {
+    public struct Register: Sendable, Hashable, RawRepresentable, Comparable,
+        ExpressibleByIntegerLiteral
+    {
         public var rawValue: UInt32
 
         @inlinable

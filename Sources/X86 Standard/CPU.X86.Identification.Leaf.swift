@@ -11,7 +11,9 @@
 
 extension CPU.X86.Identification {
     /// A CPUID leaf number.
-    public struct Leaf: Sendable, Hashable, RawRepresentable, Comparable, ExpressibleByIntegerLiteral {
+    public struct Leaf: Sendable, Hashable, RawRepresentable, Comparable,
+        ExpressibleByIntegerLiteral
+    {
         public var rawValue: UInt32
 
         @inlinable
