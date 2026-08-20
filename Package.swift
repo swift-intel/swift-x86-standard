@@ -1,15 +1,15 @@
-// swift-tools-version: 6.3.3
+// swift-tools-version: 6.4
 
 import PackageDescription
 
 let package = Package(
     name: "swift-x86-standard",
     platforms: [
-        .macOS("27"),
-        .iOS("27"),
-        .tvOS("27"),
-        .watchOS("27"),
-        .visionOS("27")
+        .macOS(.v27),
+        .iOS(.v27),
+        .tvOS(.v27),
+        .watchOS(.v27),
+        .visionOS(.v27),
     ],
     products: [
         .library(
@@ -18,7 +18,10 @@ let package = Package(
         )
     ],
     dependencies: [
-        .package(url: "https://github.com/swift-primitives/swift-cpu-primitives.git", branch: "main")
+        .package(
+            url: "https://github.com/swift-primitives/swift-cpu-primitives.git",
+            branch: "main"
+        )
     ],
     targets: [
         .target(
@@ -29,13 +32,13 @@ let package = Package(
             name: "X86 Standard",
             dependencies: [
                 .target(name: "x86 Shims"),
-                .product(name: "CPU Primitives", package: "swift-cpu-primitives")
+                .product(name: "CPU Primitives", package: "swift-cpu-primitives"),
             ]
         ),
         .testTarget(
             name: "X86 Standard Tests",
             dependencies: [
-                "X86 Standard",
+                "X86 Standard"
             ]
         ),
     ],
