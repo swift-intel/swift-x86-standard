@@ -1,14 +1,3 @@
-// ===----------------------------------------------------------------------===//
-//
-// This source file is part of the swift-x86-primitives open source project
-//
-// Copyright (c) 2024-2025 Coen ten Thije Boonkkamp and the swift-x86-primitives project authors
-// Licensed under Apache License v2.0
-//
-// See LICENSE for license information
-//
-// ===----------------------------------------------------------------------===//
-
 import Testing
 
 @testable import X86_Standard
@@ -32,11 +21,9 @@ struct CPUTimestampTests {
             let (v1, _) = CPU.X86.Timestamp.read.serialized()
             let (v2, _) = CPU.X86.Timestamp.read.serialized()
 
-            // On same core, values should increase
-            // (though wraparound is theoretically possible)
             #expect(v2.rawValue >= v1.rawValue, "Timestamp should not decrease between reads")
         #else
-            // Skip on non-x86
+
         #endif
     }
 
@@ -46,8 +33,7 @@ struct CPUTimestampTests {
 
         #if arch(x86_64) || arch(i386)
             #expect(value.rawValue > 0, "RDTSCP should return non-zero")
-            // processorID is valid but we can't assert much about it
-            // It's typically set by the OS in IA32_TSC_AUX
+
             _ = processorID
         #else
             #expect(value == 0)
@@ -57,7 +43,7 @@ struct CPUTimestampTests {
 
     @Test
     func `accessor pattern works`() {
-        // Verify the nested accessor pattern compiles and works
+
         let read = CPU.X86.Timestamp.read
         let _ = read.serialized()
     }

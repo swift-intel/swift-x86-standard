@@ -1,14 +1,3 @@
-// ===----------------------------------------------------------------------===//
-//
-// This source file is part of the swift-x86-primitives open source project
-//
-// Copyright (c) 2024-2025 Coen ten Thije Boonkkamp and the swift-x86-primitives project authors
-// Licensed under Apache License v2.0
-//
-// See LICENSE for license information
-//
-// ===----------------------------------------------------------------------===//
-
 import Testing
 
 @testable import X86_Standard
@@ -17,7 +6,7 @@ import Testing
 struct CPUX86NamespaceTests {
     @Test
     func `CPU.X86 namespace exists`() {
-        // Verify the namespace compiles
+
         typealias X86 = CPU.X86
         #expect(true)
     }
@@ -54,15 +43,13 @@ struct CPUX86NamespaceTests {
 
     @Test
     func `Re-exported CPU primitives are accessible`() {
-        // Verify CPU primitives from swift-cpu-primitives are accessible
-        // These should be re-exported via @_exported import
+
         typealias Spin = CPU.Spin
         typealias Barrier = CPU.Barrier
         typealias Cache = CPU.Cache
         typealias Timestamp = CPU.Timestamp
         typealias Integrity = CPU.Integrity
 
-        // Also test that we can call them
         CPU.Spin.hint()
         CPU.Barrier.compiler()
         let _ = CPU.Timestamp.read()

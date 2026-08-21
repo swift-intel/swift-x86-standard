@@ -1,32 +1,12 @@
-// ===----------------------------------------------------------------------===//
-//
-// This source file is part of the swift-x86-primitives open source project
-//
-// Copyright (c) 2024-2025 Coen ten Thije Boonkkamp and the swift-x86-primitives project authors
-// Licensed under Apache License v2.0
-//
-// See LICENSE for license information
-//
-// ===----------------------------------------------------------------------===//
-
 public import x86_Shims
 
 extension CPU.X86 {
-    /// CPU feature detection via CPUID instruction.
-    ///
-    /// x86-unique. ARM uses system registers for feature detection.
+
     public enum Identification {}
 }
 
 extension CPU.X86.Identification {
-    /// Query with the given leaf.
-    ///
-    /// Returns the values of EAX, EBX, ECX, and EDX registers after
-    /// executing CPUID with the specified leaf.
-    ///
-    /// - Parameter leaf: The CPUID leaf to query.
-    /// - Returns: The register values, or `nil` if the operation failed
-    ///   (e.g., on non-x86 platforms).
+
     @inline(always)
     public static func query(leaf: Leaf) -> Result? {
         var eax: UInt32 = 0
@@ -51,16 +31,6 @@ extension CPU.X86.Identification {
         )
     }
 
-    /// Query with leaf and subleaf.
-    ///
-    /// Returns the values of EAX, EBX, ECX, and EDX registers after
-    /// executing CPUID with the specified leaf and subleaf (ECX input).
-    ///
-    /// - Parameters:
-    ///   - leaf: The CPUID leaf to query.
-    ///   - subleaf: The subleaf (ECX input) to query.
-    /// - Returns: The register values, or `nil` if the operation failed
-    ///   (e.g., on non-x86 platforms).
     @inline(always)
     public static func query(leaf: Leaf, subleaf: Subleaf) -> Result? {
         var eax: UInt32 = 0
