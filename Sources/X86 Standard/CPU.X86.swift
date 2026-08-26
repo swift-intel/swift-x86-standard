@@ -1,4 +1,4 @@
-@_exported public import CPU_Primitives
+@_exported public import CPU
 
 extension CPU {
 

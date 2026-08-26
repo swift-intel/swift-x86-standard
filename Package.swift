@@ -19,7 +19,7 @@ let package = Package(
     ],
     dependencies: [
         .package(
-            url: "https://github.com/swift-primitives/swift-cpu-primitives.git",
+            url: "https://github.com/swift-molecules/swift-cpu.git",
             branch: "main"
         )
     ],
@@ -32,7 +32,7 @@ let package = Package(
             name: "X86 Standard",
             dependencies: [
                 .target(name: "x86 Shims"),
-                .product(name: "CPU Primitives", package: "swift-cpu-primitives"),
+                .product(name: "CPU", package: "swift-cpu"),
             ]
         ),
         .testTarget(
