@@ -18,10 +18,7 @@ let package = Package(
         )
     ],
     dependencies: [
-        .package(
-            url: "https://github.com/swift-molecules/swift-cpu.git",
-            branch: "main"
-        )
+        .package(url: "https://github.com/swift-atoms/swift-cpu.git", branch: "main", traits: ["BinarySerializer"])
     ],
     targets: [
         .target(
