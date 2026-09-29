@@ -1,3 +1,5 @@
+public import Binary
+
 extension CPU.X86.Identification {
 
     public struct Subleaf: Sendable, Hashable, RawRepresentable, Comparable,

@@ -18,7 +18,8 @@ let package = Package(
         )
     ],
     dependencies: [
-        .package(url: "https://github.com/swift-atoms/swift-cpu.git", branch: "main", traits: ["BinarySerializer"])
+        .package(url: "https://github.com/swift-atoms/swift-cpu.git", branch: "main", traits: ["BinarySerializer"]),
+        .package(url: "https://github.com/swift-atoms/swift-binary.git", branch: "main", traits: ["Serializer"]),
     ],
     targets: [
         .target(
@@ -30,6 +31,7 @@ let package = Package(
             dependencies: [
                 .target(name: "x86 Shims"),
                 .product(name: "CPU", package: "swift-cpu"),
+                .product(name: "Binary", package: "swift-binary"),
             ]
         ),
         .testTarget(

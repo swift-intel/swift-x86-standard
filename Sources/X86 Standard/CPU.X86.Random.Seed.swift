@@ -1,3 +1,5 @@
+public import Binary
+
 extension CPU.X86.Random {
 
     public struct Seed: Sendable, Hashable, RawRepresentable, ExpressibleByIntegerLiteral {

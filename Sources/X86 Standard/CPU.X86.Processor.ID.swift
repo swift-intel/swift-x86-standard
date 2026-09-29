@@ -1,3 +1,5 @@
+public import Binary
+
 extension CPU.X86.Processor {
 
     public struct ID: Sendable, Hashable, RawRepresentable, ExpressibleByIntegerLiteral {

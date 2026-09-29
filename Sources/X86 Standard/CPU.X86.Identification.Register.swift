@@ -1,3 +1,5 @@
+public import Binary
+
 extension CPU.X86.Identification {
 
     public struct Register: Sendable, Hashable, RawRepresentable, Comparable,
