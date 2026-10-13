@@ -17,10 +17,9 @@ struct CPUIdentificationTests {
             let ebx = result.ebx.rawValue
             let edx = result.edx.rawValue
             let ecx = result.ecx.rawValue
-            let vendorBytes =
-                withUnsafeBytes(of: ebx) { Array($0) }
-                + withUnsafeBytes(of: edx) { Array($0) }
-                + withUnsafeBytes(of: ecx) { Array($0) }
+            let vendorBytes = [ebx, edx, ecx].flatMap { register in
+                (0..<4).map { UInt8(truncatingIfNeeded: register >> ($0 * 8)) }
+            }
 
             let vendor = String(decoding: vendorBytes, as: UTF8.self)
             #expect(!vendor.isEmpty, "Vendor string should not be empty")
