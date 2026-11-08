@@ -2,7 +2,7 @@ import Testing
 
 @testable import X86_Standard
 
-@Suite("CPU.X86.Random Tests")
+@Suite
 struct CPURandomTests {
     @Test
     func `next returns random value on supported hardware`() {

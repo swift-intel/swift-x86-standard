@@ -2,7 +2,7 @@ import Testing
 
 @testable import X86_Standard
 
-@Suite("CPU.X86.Timestamp Tests")
+@Suite
 struct CPUTimestampTests {
     @Test
     func `serialized read returns non-zero on x86`() {

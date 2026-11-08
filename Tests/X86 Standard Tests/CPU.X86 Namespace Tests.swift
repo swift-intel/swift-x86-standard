@@ -2,7 +2,7 @@ import Testing
 
 @testable import X86_Standard
 
-@Suite("CPU.X86 Namespace Tests")
+@Suite
 struct CPUX86NamespaceTests {
     @Test
     func `CPU.X86 namespace exists`() {
