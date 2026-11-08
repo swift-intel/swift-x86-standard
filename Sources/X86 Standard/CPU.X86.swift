@@ -1,4 +1,4 @@
-@_exported public import CPU
+public import CPU
 
 extension CPU {
 
