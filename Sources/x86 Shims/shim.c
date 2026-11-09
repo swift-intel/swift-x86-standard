@@ -31,6 +31,14 @@ bool swift_x86_identification_query_v1(
 #if SWIFT_X86
     #if defined(SWIFT_MSVC)
         int regs[4];
+        __cpuid(regs, (int)(leaf & 0x80000000u));
+        if ((unsigned int)regs[0] < leaf) {
+            *eax = 0;
+            *ebx = 0;
+            *ecx = 0;
+            *edx = 0;
+            return false;
+        }
         __cpuid(regs, (int)leaf);
         *eax = (unsigned int)regs[0];
         *ebx = (unsigned int)regs[1];
@@ -61,6 +69,14 @@ bool swift_x86_identification_query_subleaf_v1(
 #if SWIFT_X86
     #if defined(SWIFT_MSVC)
         int regs[4];
+        __cpuid(regs, (int)(leaf & 0x80000000u));
+        if ((unsigned int)regs[0] < leaf) {
+            *eax = 0;
+            *ebx = 0;
+            *ecx = 0;
+            *edx = 0;
+            return false;
+        }
         __cpuidex(regs, (int)leaf, (int)subleaf);
         *eax = (unsigned int)regs[0];
         *ebx = (unsigned int)regs[1];

@@ -64,4 +64,19 @@ struct CPUIdentificationTests {
             #expect(result == nil)
         #endif
     }
+
+    @Test
+    func `query leaf above the maximum returns nil`() {
+        #if arch(x86_64) || arch(i386)
+            guard let leaf0 = CPU.X86.Identification.query(leaf: 0) else {
+                Issue.record("CPUID leaf 0 failed")
+                return
+            }
+            let above = CPU.X86.Identification.Leaf(leaf0.eax.rawValue + 1)
+            #expect(CPU.X86.Identification.query(leaf: above) == nil)
+            #expect(CPU.X86.Identification.query(leaf: above, subleaf: 0) == nil)
+        #else
+            #expect(CPU.X86.Identification.query(leaf: 0x7FFF_FFFF) == nil)
+        #endif
+    }
 }

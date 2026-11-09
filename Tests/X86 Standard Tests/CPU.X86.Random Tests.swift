@@ -28,6 +28,8 @@ struct CPURandomTests {
                 if let v1 = CPU.X86.Random.next(), let v2 = CPU.X86.Random.next() {
                     #expect(v1 != v2, "Two random values should differ")
                 }
+            } else {
+                #expect(CPU.X86.Random.next() == nil, "RDRAND should return nil when CPUID lacks it")
             }
         #else
             let result = CPU.X86.Random.next()
@@ -55,9 +57,9 @@ struct CPURandomTests {
                     }
                 }
 
-                if !gotValue {
-
-                }
+                #expect(gotValue, "RDSEED should succeed at least once on supported hardware")
+            } else {
+                #expect(CPU.X86.Random.seed() == nil, "RDSEED should return nil when CPUID lacks it")
             }
         #else
             let result = CPU.X86.Random.seed()
